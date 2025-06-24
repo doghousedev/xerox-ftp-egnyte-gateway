@@ -1,0 +1,37 @@
+{
+  "dchenault": {
+    "email": "dchenault@net-av.com",
+    "password": "password",
+    "egnytePath": "Shared/Userfiles/Userfiles/dchenault/MyScans"
+  },
+  "dgroth": {
+    "email": "dgroth@net-av.com",
+    "password": "password",
+    "egnytePath": "Shared/Userfiles/Userfiles/dgrothen/MyScans"
+  },
+  "eabaylin": {
+    "email": "eabaylin@net-av.com",
+    "password": "password",
+    "egnytePath": "Shared/Userfiles/Userfiles/eabaylin/MyScans"
+  },
+  "rmbaylin": {
+    "email": "rmbaylin@net-av.com",
+    "password": "password",
+    "egnytePath": "Shared/Userfiles/Userfiles/rmbaylin/MyScans"
+  },
+  "tabaylin": {
+    "email": "tabaylin@net-av.com",
+    "password": "password",
+    "egnytePath": "Shared/Userfiles/Userfiles/tabaylin/MyScans"
+  },
+  "tkoblick": {
+    "email": "tkoblick@net-av.com",
+    "password": "password",
+    "egnytePath": "Shared/Userfiles/Userfiles/tkoblick/MyScans"
+  },
+  "tlienau": {
+    "email": "tlienau@net-av.com",
+    "password": "password",
+    "egnytePath": "Shared/Userfiles/Userfiles/tlienau/MyScans"
+  }
+}

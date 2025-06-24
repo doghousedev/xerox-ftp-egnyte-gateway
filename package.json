@@ -1,0 +1,21 @@
+{
+  "name": "xerox-ftp-egnyte-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "dotenv": "^16.5.0",
+    "form-data": "^4.0.3",
+    "ftp-server": "^0.1.0",
+    "ftp-srv": "^4.6.3",
+    "ftpd": "^0.2.16"
+  }
+}

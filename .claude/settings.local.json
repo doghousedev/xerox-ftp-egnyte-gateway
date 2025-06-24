@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(node:*)",
+      "Bash(curl:*)",
+      "Bash(lsof:*)",
+      "Bash(ss:*)",
+      "Bash(pkill:*)",
+      "Bash(grep:*)",
+      "Bash(cp:*)",
+      "Bash(timeout:*)",
+      "Bash(npm install:*)",
+      "Bash(pnpm add:*)"
+    ],
+    "deny": []
+  }
+}
