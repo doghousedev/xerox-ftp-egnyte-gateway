@@ -1,3 +1,0 @@
-This is a test file for FTP upload testing.
-Created at: 2025-06-24
-Purpose: Testing file upload functionality
