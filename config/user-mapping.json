@@ -2,36 +2,36 @@
   "dchenault": {
     "email": "dchenault@net-av.com",
     "password": "password",
-    "egnytePath": "Shared/Userfiles/Userfiles/dchenault/MyScans"
+    "egnytePath": "Shared/Userfiles/dchenault/MyScans"
   },
   "dgroth": {
     "email": "dgroth@net-av.com",
     "password": "password",
-    "egnytePath": "Shared/Userfiles/Userfiles/dgrothen/MyScans"
+    "egnytePath": "Shared/Userfiles/dgroth/MyScans"
   },
   "eabaylin": {
     "email": "eabaylin@net-av.com",
     "password": "password",
-    "egnytePath": "Shared/Userfiles/Userfiles/eabaylin/MyScans"
+    "egnytePath": "Shared/Userfiles/eabaylin/MyScans"
   },
   "rmbaylin": {
     "email": "rmbaylin@net-av.com",
     "password": "password",
-    "egnytePath": "Shared/Userfiles/Userfiles/rmbaylin/MyScans"
+    "egnytePath": "Shared/Userfiles/rmbaylin/MyScans"
   },
   "tabaylin": {
     "email": "tabaylin@net-av.com",
     "password": "password",
-    "egnytePath": "Shared/Userfiles/Userfiles/tabaylin/MyScans"
+    "egnytePath": "Shared/Userfiles/tabaylin/MyScans"
   },
   "tkoblick": {
     "email": "tkoblick@net-av.com",
     "password": "password",
-    "egnytePath": "Shared/Userfiles/Userfiles/tkoblick/MyScans"
+    "egnytePath": "Shared/Userfiles/tkoblick/MyScans"
   },
   "tlienau": {
     "email": "tlienau@net-av.com",
     "password": "password",
-    "egnytePath": "Shared/Userfiles/Userfiles/tlienau/MyScans"
+    "egnytePath": "Shared/Userfiles/tlienau/MyScans"
   }
 }

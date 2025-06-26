@@ -11,7 +11,9 @@
       "Bash(cp:*)",
       "Bash(timeout:*)",
       "Bash(npm install:*)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)"
     ],
     "deny": []
   }

@@ -24,6 +24,7 @@ let userMappings = {};
 try {
     userMappings = JSON.parse(fs.readFileSync(CONFIG.USER_MAPPING, 'utf8'));
     console.log('✅ Loaded users:', Object.keys(userMappings).join(', '));
+writeLog('INFO', 'STARTUP', '', `Server starting - loaded ${Object.keys(userMappings).length} users`);
 } catch (error) {
     console.error('❌ Failed to load user mappings:', error.message);
     process.exit(1);
@@ -39,6 +40,19 @@ const uploadQueue = [];
 const userSessions = new Map();
 let processTimer = null;
 const IDLE_TIMEOUT = 10000; // 10 seconds
+
+// Logging system
+function writeLog(result, action, username, description) {
+    const LOG_FILE = './gateway.log';
+    const timestamp = new Date().toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, '');
+    const logEntry = `${timestamp} --- ${result} --- ${action} --- ${username || 'SYSTEM'} --- ${description}\n`;
+    
+    try {
+        fs.appendFileSync(LOG_FILE, logEntry);
+    } catch (error) {
+        console.error('Failed to write log:', error.message);
+    }
+}
 
 // Egnyte upload function
 async function uploadToEgnyte(filePath, egnytePath) {
@@ -86,10 +100,12 @@ async function processUploadQueue() {
             // Delete local file after successful upload
             fs.unlinkSync(item.localPath);
             console.log(`✅ Uploaded and deleted: ${item.fileName}`);
+            writeLog('SUCCESS', 'EGNYTE_UPLOAD', item.username, `File uploaded to Egnyte and deleted locally: ${item.fileName}`);
             success++;
             
         } catch (error) {
             console.error(`❌ Failed to upload ${item.fileName}:`, error.message);
+            writeLog('ERROR', 'EGNYTE_UPLOAD', item.username, `Failed to upload ${item.fileName}: ${error.message}`);
             failed++;
         }
         
@@ -101,6 +117,7 @@ async function processUploadQueue() {
     }
     
     console.log(`🏁 Batch complete: ${success} success, ${failed} failed`);
+    writeLog('INFO', 'BATCH_COMPLETE', '', `Batch processing finished: ${success} successful, ${failed} failed`);
 }
 
 // Start idle timer for processing uploads
@@ -113,6 +130,7 @@ function startProcessTimer() {
     // Start new timer
     processTimer = setTimeout(() => {
         console.log(`⏰ Idle timeout reached, starting batch processing...`);
+    writeLog('INFO', 'BATCH_START', '', `Processing ${uploadQueue.length} files for Egnyte upload`);
         processUploadQueue();
         processTimer = null;
     }, IDLE_TIMEOUT);
@@ -142,6 +160,7 @@ ftpServer.on('login', ({ connection, username, password }, resolve, reject) => {
     }
     
     console.log(`✅ User ${username} authenticated`);
+    writeLog('SUCCESS', 'LOGIN', username, `User authenticated from ${connection.ip}`);
     
     // Store user session info
     userSessions.set(connection, {
@@ -170,6 +189,7 @@ ftpServer.on('login', ({ connection, username, password }, resolve, reject) => {
         const egnytePath = `${session.userInfo.egnytePath}/${fileName}`;
         
         console.log(`📁 File received: ${fileName} from ${session.username}`);
+        writeLog('SUCCESS', 'UPLOAD', session.username, `File received: ${fileName} (${fs.statSync(filePath).size} bytes)`);
         
         // Add to upload queue
         uploadQueue.push({
@@ -190,6 +210,7 @@ ftpServer.on('login', ({ connection, username, password }, resolve, reject) => {
         const session = userSessions.get(connection);
         if (session) {
             console.log(`👋 User ${session.username} disconnected`);
+        writeLog('INFO', 'LOGOUT', session.username, 'User disconnected');
             userSessions.delete(connection);
         }
     });
@@ -206,6 +227,7 @@ ftpServer.on('login', ({ connection, username, password }, resolve, reject) => {
 // Start server
 ftpServer.listen().then(() => {
     console.log(`🚀 FTP Server started on ${CONFIG.FTP_HOST}:${CONFIG.FTP_PORT}`);
+    writeLog('INFO', 'STARTUP', '', `FTP Server started on ${CONFIG.FTP_HOST}:${CONFIG.FTP_PORT}`);
     console.log(`📂 Scan directory: ${CONFIG.SCAN_DIR}`);
     console.log(`🌐 Egnyte domain: ${CONFIG.EGNYTE_DOMAIN}`);
     console.log('📋 Ready for Xerox connections!');
